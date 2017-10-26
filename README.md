@@ -13,15 +13,43 @@ The preferred way to install this extension is through [composer](http://getcomp
 To install, either run
 
 ```
-$ php composer.phar require edofre/yii2-command-caller
+$ php composer.phar require edofre/yii2-command-caller "V1.0.0"
 ```
 
 or add
 
 ```
-"edofre/yii2-command-caller": "dev-master"
+"edofre/yii2-command-caller": "V1.0.0"
 ```
 
 to the ```require``` section of your `composer.json` file.
 
 ## Usage
+
+### As application component
+Add the component to your configuration file
+```php
+    'components' => [
+        'consoleRunner' => [
+            'class' => 'edofre\commandcaller\CommandCaller',
+            // Default values, not required
+            'script' => '@app/yii',
+            'executable' => '/usr/bin/php',
+        ]
+    ]
+```
+
+```php
+// We will change the $result variable in the CommandCaller class
+$result = '';
+Yii::$app->consoleRunner->run('command parameter1 parameter2', $result);
+var_dump($result)
+```
+
+### As single class
+```php
+// We will change the $result variable in the CommandCaller class
+$result = '';
+(new \edofre\commandcaller\CommandCaller())->run('command parameter1 parameter2', $result);
+var_dump($result)
+```
