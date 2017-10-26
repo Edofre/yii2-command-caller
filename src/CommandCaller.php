@@ -28,17 +28,11 @@ class CommandCaller extends Component
 
     /**
      * @param string $command
-     * @param string $output
      * @return int Termination status of the process that was run. In case of an error then -1 is returned.
      */
-    public function run($command, &$output = '')
+    public function run($command)
     {
-        $handler = popen($this->buildCommand($command), 'r');
-        while (!feof($handler)) {
-            $output .= fgets($handler);
-        }
-
-        return pclose($handler);
+        return pclose(popen($this->buildCommand($command), 'r'));
     }
 
     /**
@@ -48,6 +42,6 @@ class CommandCaller extends Component
      */
     protected function buildCommand($command)
     {
-        return $this->executable . ' ' . Yii::getAlias($this->script) . ' ' . $command . '  2>&1';
+        return $this->executable . ' ' . Yii::getAlias($this->script) . ' ' . $command . ' &> /dev/null &';
     }
 }

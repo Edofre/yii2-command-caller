@@ -13,13 +13,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 To install, either run
 
 ```
-$ php composer.phar require edofre/yii2-command-caller "V1.0.0"
+$ php composer.phar require edofre/yii2-command-caller "V1.0.1"
 ```
 
 or add
 
 ```
-"edofre/yii2-command-caller": "V1.0.0"
+"edofre/yii2-command-caller": "V1.0.1"
 ```
 
 to the ```require``` section of your `composer.json` file.
@@ -41,15 +41,11 @@ Add the component to your configuration file
 
 ```php
 // We will change the $result variable in the CommandCaller class
-$result = '';
-Yii::$app->consoleRunner->run('command parameter1 parameter2', $result);
-var_dump($result)
+Yii::$app->consoleRunner->run('command parameter1 parameter2');
 ```
 
 ### As single class
 ```php
-// We will change the $result variable in the CommandCaller class
-$result = '';
-(new \edofre\commandcaller\CommandCaller())->run('command parameter1 parameter2', $result);
-var_dump($result)
+$commandCaller = new \edofre\commandcaller\CommandCaller();
+$commandCaller->run('command parameter1 parameter2');
 ```
