@@ -48,6 +48,6 @@ class CommandCaller extends Component
      */
     protected function buildCommand($command)
     {
-        return $this->executable . ' ' . Yii::getAlias($this->yiiscript) . ' ' . $cmd . '  2>&1';
+        return $this->executable . ' ' . Yii::getAlias($this->script) . ' ' . $command . '  2>&1';
     }
 }
